@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const port = process.env.PORT || 3001;
 const { NotFoundError } = require("./utils/errors");
 const CONFIG = require("./config.js");
+const authRoute = require("./routes/auth");
 
 app.listen(port, () => {
 	console.log(`🚀 Server listening on port ` + port);
@@ -11,6 +12,7 @@ app.listen(port, () => {
 
 app.use(morgan("tiny"));
 app.use(express.json());
+app.use(authRoute);
 
 app.get("/", (req, res) => {
 	res.status(200).send({ ping: "pong" });

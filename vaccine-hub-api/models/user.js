@@ -1,3 +1,5 @@
+const db = require("./db.js");
+
 class User {
 	static async login(username, password) {
 		// TODO: post username and password to API endpoint
@@ -7,3 +9,5 @@ class User {
 		//TODO: post username and password to API endpoint
 	}
 }
+
+module.exports = User;
