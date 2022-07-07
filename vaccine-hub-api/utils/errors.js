@@ -25,4 +25,5 @@ class UnauthorizedAccessError extends Error {
 module.exports = {
 	NotFoundError,
 	BadRequestError,
+	UnauthorizedAccessError,
 };

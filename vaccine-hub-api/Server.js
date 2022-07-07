@@ -5,6 +5,8 @@ const port = process.env.PORT || 3001;
 const { NotFoundError } = require("./utils/errors");
 const CONFIG = require("./config.js");
 const authRoute = require("./routes/auth");
+const cors = require("cors");
+app.use(cors());
 
 app.listen(port, () => {
 	console.log(`🚀 Server listening on port ` + port);

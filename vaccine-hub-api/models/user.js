@@ -7,8 +7,8 @@ class User {
 		return {
 			id: user.id,
 			email: user.email,
-			firstName: user.firstName,
-			lastName: user.lastName,
+			firstName: user.first_name,
+			lastName: user.last_name,
 		};
 	}
 
@@ -20,8 +20,7 @@ class User {
 				throw new BadRequestError(`Invalid ${required} provided`);
 			}
 		});
-
-		const user = this.fetchUserByEmail(credentials.email);
+		const user = await this.fetchUserByEmail(credentials.email.toLowerCase());
 
 		if (user) {
 			const validPassword = await bcrypt.compare(
@@ -62,7 +61,7 @@ class User {
 		}
 
 		const lowerCaseEmail = credentials.email.toLowerCase();
-		const hashedPassword = bcrypt.hashSync(credentials.password, 10);
+		const hashedPassword = await bcrypt.hash(credentials.password, 10);
 		const result = await db.query(
 			`
 			INSERT INTO users(
