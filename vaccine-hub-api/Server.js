@@ -12,7 +12,7 @@ app.listen(port, () => {
 
 app.use(morgan("tiny"));
 app.use(express.json());
-app.use(authRoute);
+app.use("/auth", authRoute);
 
 app.get("/", (req, res) => {
 	res.status(200).send({ ping: "pong" });
